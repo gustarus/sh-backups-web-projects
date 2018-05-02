@@ -12,11 +12,11 @@ cp .env.example .env
 Path to projects with one level structure. Used to search custom backup scripts. For example:
 
 ```
-- /home/webulla/www/webulla.ru
-- /home/webulla/www/landing.webulla.ru
+- /home/webulla/www/webulla.com
+- /home/webulla/www/landing.webulla.com
 ```
 
-**BACKUP_CLOUD_FOLDER**=/home/user/www/cloud.domain.ru/web
+**BACKUP_CLOUD_FOLDER**=/home/user/www/cloud.domain.com/web
 
 Path to folder which is static files storage. Will be dumped as a zip archive.
 
@@ -29,8 +29,8 @@ Where to save backups (will be created or cleaned).
 Files to execute in each top-level folder in **BACKUP_PROJECTS_FOLDER**. For example, in this example (backup.sh) the following commands will be executed.
 
 ```bash
-sh /home/user/www/webulla.ru/backup.sh $BACKUP_TARGET_FOLDER
-sh /home/user/www/webulla.ru/backup.sh $BACKUP_TARGET_FOLDER
+sh /home/user/www/webulla.com/backup.sh $BACKUP_TARGET_FOLDER
+sh /home/user/www/webulla.com/backup.sh $BACKUP_TARGET_FOLDER
 ```
 
 **BACKUP_MYSQL_USER**=root
@@ -41,7 +41,20 @@ Mysql user to dump all databases for this user.
 
 Mysql password for **BACKUP_MYSQL_USER**.
 
-## Download remote backup folder
+## Use cases
+### Create backup and download it from remote machine
+
+**1. Create backup on the remote machine**
 ```bash
-cd && rsync -chavzP --stats user@host.ru:/home/user/backups .
+ssh user@host.com sh /home/user/backups/backup.sh
+```
+
+**2. Create folder for the backup on the local machine**
+```bash
+mkdir -p ~/backups && cd ~/backups
+```
+
+**3. Download backup from the remote machine**
+```bash
+rsync -chavzP --stats user@host.com:/home/user/backups/* .
 ```

@@ -4,10 +4,10 @@
 exe() { echo "\$ $@" ; "$@"; }
 
 # local configuration
-path="$(pwd)"
+folder=$(dirname "$0")
 
 # load backups variables
-export $(cat .env | xargs) || exit 1
+export $(cat "${folder}"/.env | xargs) || exit 1
 
 # creating variables
 sourceProjectsFolder="${BACKUP_PROJECTS_FOLDER}"
