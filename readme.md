@@ -40,3 +40,8 @@ Mysql user to dump all databases for this user.
 **BACKUP_MYSQL_PASSWORD**=root
 
 Mysql password for **BACKUP_MYSQL_USER**.
+
+## Download remote backup folder
+```bash
+cd && rsync -chavzP --stats user@host.ru:/home/user/backups .
+```
