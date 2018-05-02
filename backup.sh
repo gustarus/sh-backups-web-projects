@@ -73,7 +73,6 @@ done
 # backuping cloud (static files from one folder)
 echo "Backuping cloud from ${sourceCloudFolder}..."
 exe zip -r "${targetFolderCloud}"/cloud.zip "${sourceCloudFolder}"
-exe mv 
 
 
 echo "Complete!"
